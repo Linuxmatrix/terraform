@@ -1,25 +1,25 @@
 #VMware vSphere configuration
 
-vsphere_vcenter= "usmkeevcav06.eng.med.ge.com"
+vsphere_vcenter= "tetvc@local.com"
 vsphere_user= "Administrator@vsphere.local"
 vsphere_unverified_ssl = "true"
-vsphere_datacenter = "Xray-POC"
-vsphere_cluster = "Xray-POC-Cluster"
+vsphere_datacenter = "neodc"
+vsphere_cluster = "neo-Cluster"
 
 #Virtual Machine Parameters
 vm_name = "terraform-testvm"
 
-vm_datastore = "Xray-Poc-Vol"
+vm_datastore = "neo-Vol"
 
-vm_network = "dvPortGroup_Hackthon_VMs_124"
+vm_network = "dvPortGroup"
 
-vm_netmask = "22"
+vm_netmask = "24"
 
-vm_gateway = "3.232.124.254"
+vm_gateway = "192.168.160.1"
 
-vm_dns = "10.220.220.220"
+vm_dns = "8.8.8.8"
 
-vm_domain = "eng.med.ge.com"
+vm_domain = "neo.com"
 
 vm_template = "Centos7.7-TF-Template"
 
@@ -29,4 +29,4 @@ vm_cpu = "4"
 
 vm_ram = "8024"
 
-vm_ip = "3.232.124.3"
+vm_ip = "192.168.10.5"
