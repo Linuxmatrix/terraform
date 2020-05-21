@@ -1,0 +1,44 @@
+ pipeline{
+    agent{
+      label "terraform" 
+	}
+    parameters {
+        booleanParam(name: 'APPLY', defaultValue:false, description: 'Select this value true if you want to create a VM')
+	    booleanParam(name: 'DESTROY', defaultValue:false, description: 'Select this value true if you want to destroy a VM')
+    }
+    stages{
+      stage("Create VM"){
+        steps{
+			script{
+				if(APPLY.toBoolean()){
+					sh '''
+						cd /opt/terraform_code/var || true
+						terraform init
+						terraform apply -auto-approve ${TERRAFORM_OPTS}
+					'''
+					}
+				else{
+					echo "VM Creation skipped"  
+					}
+				}
+			}
+		}//Create VM
+		stage("Destroy") {
+        steps{
+			script{
+				if(DESTROY.toBoolean()){
+					sh '''
+						cd /opt/terraform_code/var || true
+						terraform init
+						terraform destroy -auto-approve
+					'''
+					}
+				else{
+					echo "VM Creation Created and destory skipped"  
+					}
+				}
+			}
+		}//Destroy
+	}//stages
+}//pipelines
+                 
